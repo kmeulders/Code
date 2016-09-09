@@ -1,0 +1,49 @@
+	{% extends 'base.html.twig' %}
+
+
+	{% block title %}Kay Meulders - PHP Developer{% endblock %}
+	
+
+
+{% block body %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+	<div class="content-title shadow">Archive</div>
+	
+		{% for item in articles %}
+	<a class="weblog-a" href="{{item.id}}-{{item.title}}/">
+	<div class="weblog-link clearfix">
+
+	
+	<div class="content-weblog clearfix">
+		
+		<div class="weblog-postit clearfix" id="wlpi-{{item.id}}"></div>
+
+
+			<h1>{{ item.title|replace({'-': ' '})|title }}</h1>
+				</div>
+				
+			</div>
+			</a>
+
+			<script>
+  $(function(){
+  	for (i=0; i <= {{item.id}}; i++ ){
+  		if (i % 2 == 0) {
+  	$('#wlpi-' + i).css("background", "#645B9A");
+  	console.log('odd');
+  	}
+  }
+});
+
+  </script>
+
+		{% endfor %}
+	
+
+	<div id="bot-img"></div>
+  
+
+  
+	{% endblock %}
+
+	

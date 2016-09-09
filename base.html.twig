@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Coda' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ path('homepage') }}css/21We4eU3Al.css">
+    <link rel="stylesheet" type="text/css" href="{{ path('homepage') }}css/C8KYlnOk41.css">
+    <link rel="icon" href="{{ path('homepage') }}favicon.png">
+    {% endblock %}
+    </head>
+    <body data-spy="scroll">
+
+    <div id="wrapper" class="clearfix">
+    <div class="content">
+        {% block tophead %}
+                    <div id="menu">
+                    <div id="in-menu">
+                        <div class="menu-item"><a href="{{ path('homepage')}}" id="home">Home</a></div>
+                        <div class="menu-item"><a href="{{ path('weblog')}}" id="weblog">Weblog</a></div>
+                        <div class="menu-item"><a href="{{ path('about')}}" id="about">About</a></div>
+                        <div class="menu-item"><a href="{{ path('contact')}}" id="contact">Contact</a></div>
+                    </div>
+                    </div>
+                    <div id="pos-ind"></div>
+                    <div id="top-img" style="top: 0; position: absolute"></div>
+                    <div class="title" id="site-title"><span id="site-titlesp">KAY MEULDERS</span>
+                    <div class="subtitle">PHP Developer</div>
+                    </div>
+        
+        {% endblock %}
+        {% block body %}  
+        
+         {% endblock %}
+        </div>
+        </div>
+        <div id="bottom-footer clearfix">
+            <div id="bf-container">
+            Design by <span class="highlight">Kay Meulders</span>
+            </div>
+        </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="{{ path('homepage') }}js/jquery.event.scroll.js"></script>
+    <script src="{{ path('homepage') }}js/jquery.nicescroll.min.js"></script>
+    <script src="{{ path('homepage') }}js/parallax.min.js"></script>
+    <script src="{{ path('homepage') }}js/jquery.inview.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script>
+    $(function(){
+
+
+
+        $("html").niceScroll({
+            cursorcolor: "#D9B978",
+            cursorborder: "none", 
+            zindex: "101",
+            scrollspeed: "90",
+            mousescrollstep: "45",
+            smoothscroll: true,
+        });
+        $('.bar').css({"width": "0", "background" : "white"});
+
+        $('#skills-flex').on('inview', function(event, isInView) {
+          if (isInView) {
+            // element is now visible in the viewport
+            $('.bar').each(function(i){
+                $(this).css('width', $(this).attr('data-number')+'%');
+
+                if(i % 2 === 0) { // index is even
+                    $(this).css('background', '#D9B978');
+                }
+                else
+                {
+                    $(this).css('background', '#645B9A');
+                }
+            });
+          } else {
+            // element has gone out of viewport
+            $('.bar').css({"width": "0", "background" : "white"});
+          }
+        });
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+        $aimg = getRandomInt(1,10);
+        $bimg = getRandomInt(1,9);
+        while ($bimg == 3){
+            $bimg = getRandomInt(1,9);
+        }
+        $cimg = getRandomInt(1,9);
+        while ($cimg == $bimg || $cimg == 3){
+            $cimg = getRandomInt(1,9);
+        }
+        if ('{{ active_page }}' == 'home'){
+            $('#top-img').parallax({imageSrc: '{{ path('homepage') }}img/bg-gif3.gif'});
+        } else {
+            $('#top-img').parallax({imageSrc: '{{ path('homepage') }}img/bg-gif' + $aimg +'.gif'});
+        }  
+        $('#mid-img').parallax({imageSrc: '{{ path('homepage') }}img/bg-img' + $bimg +'.jpg'});
+        $('#bot-img').parallax({imageSrc: '{{ path('homepage') }}img/bg-img' + $cimg + '.jpg'});
+        $('.active').css({"background-position": "1150px 220px"});
+
+        $('#cityscapediv').parallax({imageSrc: 'img/cityscape.jpg'});
+      
+           /* if (j > 495 && j <= 520){
+                $('#menu').css({"position": "fixed", "top": "0" });
+            } else if (j > 520) { $('#menu').css({"position": "fixed", "top": "0", "background": "#645B9A", "width" : "100%", "transition-duration": "0.5s"});
+            $('.menu-item a:not(.active)').css({"background": "transparent"});    
+            } else {
+                $('#menu').css({"position": "absolute", "top": "530px", "background" : "transparent", "width" : "auto", "transition-duration": "0s"});
+                $('.menu-item a:not(.active)').css({"background": "rgba(255,255,255,0.1)"});
+            } */
+
+             //IE, Opera, Safari
+                  
+
+
+                   /* $('body').bind('mousewheel', function(e){   */                   
+                          window.onscroll = function (e) {  
+                               
+                        i = $(window).scrollTop() + 250;
+                         j = $(window).scrollTop(); 
+                         k = $(window).width();
+                         console.log(j);
+                         /* if(e.originalEvent.wheelDelta < 0 && j > 120 && j <= 140) */
+            if( j > 120 && j <= 140) 
+                            {
+                             //scroll down
+                             $('#menu').css({"position": "fixed", "top": "-50px" });
+                             $('#menu').css({"top": "-40px"});
+                             console.log('a');
+                         }else if( j > 140){
+                                
+                                console.log('b');
+                                $('body').bind('mousewheel', function(e){
+
+                                    if (e.originalEvent.wheelDelta > 0 && j > 120) {
+
+                                    $('#menu').css({"position": "fixed", "top": "0", "background": "black", 
+                                "width" : "100%", "transition-duration": "0.5s"});
+                                $('.menu-item a:not(.active)').css({"background": "transparent"}); 
+                            } else if ( j > 120) {
+                                $('#menu').css({"position": "fixed", "top": "-50px", "background": "black", 
+                                "width" : "100%", "transition-duration": "0.5s"});
+                                $('.menu-item a:not(.active)').css({"background": "transparent"});
+                            }
+
+                                });
+         /*                }else if(j > 120 && j <= 140){
+                             //scroll up
+                             $('#menu').css({"position": "fixed", "top": "0" });
+                         }else if( j > 100){
+                            $('#menu').css({"position": "fixed", "top": "0", "background": "black", 
+                                "width" : "100%", "transition-duration": "0.5s"});
+                                $('.menu-item a:not(.active)').css({"background": "transparent"}); */
+                            } else if (k > 600) {
+                                $('#menu').css({"position": "fixed", "top": "20px", "background" : "transparent", "width" : "auto", "transition-duration": "0s"});
+                $('.menu-item a:not(.active)').css({"background": "rgba(0,0,0,0.2)"});
+                console.log('c');
+                            }
+                        
+                        }; /* end on mouse scroll */
+
+
+        {% if active_page %}
+        $('#{{ active_page }}').addClass('active');
+        {% endif %}
+
+   /*     $('.article').after($('<a />', {
+            class: "content-btn-comment",
+            text: "Leave a Comment",
+            href: "#"
+        })); */
+        
+        
+        
+
+$('textarea').focus( function (e) { 
+               text = $(this).val();
+               if (text == "Type your message here"){
+                $(this).val("");
+                $('textarea').css("color", "black");
+               }
+
+            });
+
+}); /* end document ready */
+
+    </script>
+    <script>
+        {% block javascripts %}
+            
+$(function(){
+            $('.menu-item a').click(function(e){
+            /* e.preventDefault(); /** REMOVE THIS WHEN DONE **/
+           
+            $('a').removeClass("active");
+            });
+}); 
+                
+        {% endblock %}
+        </script>
+    </body>
+</html>
